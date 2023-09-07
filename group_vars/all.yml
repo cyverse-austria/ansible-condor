@@ -1,0 +1,27 @@
+---
+
+environment_name: example
+timezone: America/Phoenix
+docker:
+  tag: "latest"
+  compose_path: "/tmp"
+  registry:
+    base: "https://registry.example.org"
+# docker_registries:
+#   - host: registry.example.org
+#     user: "someuser"
+#     password: "notreal"
+#     test_image: "registry.example.org/image:latest"
+condor:
+  admin: "admin@example.org"
+  uid_domain: "example.org"
+  filesystem_domain: "example.org"
+  collector_name: "example-collector"
+  allow_read: ["127.0.0.1/32", "192.168.245.0/24"]
+  allow_write: ["127.0.0.1/32", "192.168.245.0/24"]
+  # allow_read: ["*.example.org", "1.2.3.0/24"]
+  # allow_write: ["*.example.org", "1.2.3.0/24"]
+  exec_dir: "/var/lib/condor/execute"
+  password: "notreal"
+
+use_overlay: ''
