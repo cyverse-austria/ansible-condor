@@ -1,7 +1,7 @@
 ---
 
 environment_name: example
-timezone: America/Phoenix
+timezone: Europe/Vienna
 docker:
   tag: "latest"
   compose_path: "/tmp"
@@ -22,6 +22,7 @@ condor:
   # allow_read: ["*.example.org", "1.2.3.0/24"]
   # allow_write: ["*.example.org", "1.2.3.0/24"]
   exec_dir: "/var/lib/condor/execute"
-  password: "notreal"
+  # password: "notreal"
+  password: "notreal:seemstobemuchtoshort.sothisoneisalongerversionofapassword"
 
 use_overlay: ''
