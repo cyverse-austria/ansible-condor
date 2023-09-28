@@ -1,5 +1,7 @@
 # Htcondor Deployment Playbooks
 
+**version: 10.8.0, Compatiable with Centos7**
+
 Clone and merge of:
 https://github.com/cyverse-de/deployments/tree/main/ansible/condor and
 https://github.com/slr71/de-ansible/ (as a zip)
