@@ -42,7 +42,7 @@
     - role: timezone
     # - role: docker
     # - role: docker-compose
-    - role: condor-submit
+    - role: condor_submit
       vars:
         condor_admin: "{{ condor.admin }}"
         condor_uid_domain: "{{ condor.uid_domain }}"
@@ -64,7 +64,7 @@
     - role: timezone
     # - role: docker
     # - role: docker-compose
-    - role: condor-exec-node
+    - role: condor_exec_node
       vars:
         condor_admin: "{{ condor.admin }}"
         condor_uid_domain: "{{ condor.uid_domain }}"
