@@ -41,8 +41,8 @@
 
 - name: Generate the main configuration file
   ansible.builtin.template:
-    src: "etc/condor/config.d/01-execute.config.j2"
-    dest: "/etc/condor/config.d/01-execute.config"
+    src: "etc/condor/config.d/01-role.config.j2"
+    dest: "/etc/condor/config.d/01-{{ condor_role }}.config"
     owner: "root"
     group: "root"
     mode: "0644"

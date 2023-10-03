@@ -26,3 +26,12 @@ condor:
   password: "notreal:seemstobemuchtoshort.sothisoneisalongerversionofapassword"
 
 use_overlay: ''
+
+condor_admin: "{{ condor.admin }}"
+condor_uid_domain: "{{ condor.uid_domain }}"
+condor_filesystem_domain: "{{ condor.filesystem_domain }}"
+condor_collector_name: "{{ condor.collector_name }}"
+condor_allow_read: "{{ condor.allow_read }}"
+condor_allow_write: "{{ condor.allow_write }}"
+condor_exec_dir: "{{ condor.exec_dir }}"
+condor_password: "{{ condor.password }}"
