@@ -14,8 +14,8 @@ docker:
 #     test_image: "registry.example.org/image:latest"
 condor:
   admin: "admin@example.org"
-  uid_domain: "example.org"
-  filesystem_domain: "example.org"
+  uid_domain: "local2.net"
+  filesystem_domain: "local2.net"
   collector_name: "example-collector"
   allow_read: ["127.0.0.1/32", "192.168.245.0/24"]
   allow_write: ["127.0.0.1/32", "192.168.245.0/24"]

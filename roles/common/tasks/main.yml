@@ -1,0 +1,27 @@
+---
+- name: Install prerequistes
+  ansible.builtin.yum:
+    name: python3-pip
+    state: present
+    # - name: Get docker
+    #   ansible.builtin.pip:
+    #     name: "docker"
+    #     state: present
+    #     executable: "pip3"
+
+- name: Import the PGP key used by HTCondor
+  ansible.builtin.rpm_key:
+    key: "https://research.cs.wisc.edu/htcondor/repo/keys/HTCondor-10.x-Key"
+    state: "present"
+
+- name: Add the YUM repository file
+  ansible.builtin.yum:
+    # name: "https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el8.noarch.rpm"
+    name: "https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el7.noarch.rpm"
+    state: "present"
+
+- name: Install Condor
+  ansible.builtin.yum:
+    name: "condor"
+    state: "present"
+# tasks file for common

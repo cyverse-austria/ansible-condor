@@ -1,0 +1,8 @@
+---
+- name: Common | restart condor
+  ansible.builtin.systemd:
+    name: condor
+    daemon_reload: true
+    state: restarted
+    enabled: true
+# handlers file for common
