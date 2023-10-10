@@ -11,14 +11,17 @@
 
 - name: Import the PGP key used by HTCondor
   ansible.builtin.rpm_key:
-    key: "https://research.cs.wisc.edu/htcondor/repo/keys/HTCondor-10.x-Key"
+    # key: "https://research.cs.wisc.edu/htcondor/repo/keys/HTCondor-current-Key"
+    key: "https://research.cs.wisc.edu/htcondor/repo/keys/HTCondor-23.0-Key"
+    # key: "https://research.cs.wisc.edu/htcondor/repo/keys/HTCondor-10.x-Key"
     state: "present"
 
 - name: Add the YUM repository file
   ansible.builtin.yum:
+    name: "https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el9.noarch.rpm"
     # name: "https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el8.noarch.rpm"
     # name: "https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el7.noarch.rpm"
-    name: "https://research.cs.wisc.edu/htcondor/repo/8.9/htcondor-release-current.el7.noarch.rpm"
+    # name: "https://research.cs.wisc.edu/htcondor/repo/8.9/htcondor-release-current.el7.noarch.rpm"
     state: "present"
 
 - name: Install Condor
