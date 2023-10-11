@@ -5,4 +5,3 @@
     daemon_reload: true
     state: restarted
     enabled: true
-# handlers file for common
