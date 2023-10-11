@@ -23,7 +23,7 @@ db:
   uri: postgresql://{{maftest.DEDB.User}}:{{maftest.DEDB.Password | urlencode}}@{{maftest.DEDB.Host}}:{{maftest.DEDB.Port}}/{{maftest.DEDB.Name}}?sslmode=disable
 
 email:
-  request: {{maftest.Email.SupportDest}}
+  request: "{{maftest.Email.SupportDest}}"
 
 external_irods:
   host: "{{maftest.IRODS.ExternalHost}}"
@@ -35,20 +35,20 @@ graphql:
 
 interapps:
   proxy:
-    tag: {{maftest.Docker.Tag}}
+    tag: "{{maftest.Docker.Tag}}"
 
 iplant_email:
   base: "{{maftest.BaseURLs.IplantEmail}}"
 
 iplant_groups:
-  base: "{{maftest.BaseURLs.IplantGroups}}"
-  user: de_grouper
+  base: "{{maftest.BaseURLs.IplantGroups.Base}}"
+  user: "{{maftest.BaseURLs.IplantGroups.User}}"
 
 irods:
   user: "{{maftest.IRODS.User}}"
   pass: "{{maftest.IRODS.Password}}"
   host: "{{maftest.IRODS.Host}}"
-  port: "1247"
+  port: 1247
   base: "/{{maftest.IRODS.Zone}}/home"
   resc: ""
   zone: "{{maftest.IRODS.Zone}}"
@@ -99,9 +99,9 @@ vice:
     tag: "{{maftest.VICE.FileTransfers.Tag}}"
   job-status:
     base: "{{maftest.BaseURLs.JobStatusListener}}"
-  image-pull-secret: {{ maftest.VICE.ImagePullSecret }}
-  backend-namespace: {{maftest.Namespace}}
+  image-pull-secret: "{{ maftest.VICE.ImagePullSecret }}"
+  backend-namespace: "{{maftest.Namespace}}"
   use_csi_driver: {{maftest.VICE.UseCSIDriver}}
   default_backend:
-    loading_page_url: {{maftest.VICE.DefaultBackend.LoadingPageTemplateString}}
-    base_url: {{maftest.VICE.BaseURI}}
+    loading_page_url: "{{maftest.VICE.DefaultBackend.LoadingPageTemplateString}}"
+    base_url: "{{maftest.VICE.BaseURI}}"
