@@ -1,6 +1,50 @@
 ---
-- name: Install prerequisites
-  hosts: condor
+# - name: Install prerequisites
+#   hosts: condor
+#   become: true
+#   tasks:
+#     - name: Get pip
+#       ansible.builtin.package:
+#         name: "python3-pip"
+#         state: "present"
+#     - name: Get docker
+#       ansible.builtin.pip:
+#         name: "docker"
+#         state: present
+#         executable: "pip3"
+
+- name: Condor manager
+  hosts: condor_manager
+  become: true
+  roles:
+    - role: timezone
+    # - role: docker
+    # - role: docker-compose
+    - role: condor_masuex
+      vars:
+        condor_role: "central_manager"
+    # - role: de-docker-logging-plugin
+    # - role: de-image-janitor
+    # - role: de-network-pruner
+    # - role: de-road-runner
+
+- name: Condor submit
+  hosts: condor_submit
+  become: true
+  roles:
+    - role: timezone
+    # - role: docker
+    # - role: docker-compose
+    - role: condor_masuex
+      vars:
+        condor_role: "submit"
+    # - role: de-docker-logging-plugin
+    # - role: de-image-janitor
+    # - role: de-network-pruner
+    # - role: de-road-runner
+
+- name: Condor worker
+  hosts: condor_worker
   become: true
   tasks:
     - name: Get pip
@@ -12,40 +56,6 @@
         name: "docker"
         state: present
         executable: "pip3"
-
-- name: Condor manager
-  hosts: condor_manager
-  become: true
-  roles:
-    - role: timezone
-    - role: docker
-    - role: docker-compose
-    - role: condor_masuex
-      vars:
-        condor_role: "central_manager"
-    - role: de-docker-logging-plugin
-    - role: de-image-janitor
-    - role: de-network-pruner
-    - role: de-road-runner
-
-- name: Condor submit
-  hosts: condor_submit
-  become: true
-  roles:
-    - role: timezone
-    - role: docker
-    - role: docker-compose
-    - role: condor_masuex
-      vars:
-        condor_role: "submit"
-    - role: de-docker-logging-plugin
-    - role: de-image-janitor
-    - role: de-network-pruner
-    - role: de-road-runner
-
-- name: Condor worker
-  hosts: condor_worker
-  become: true
   roles:
     - role: timezone
     - role: docker

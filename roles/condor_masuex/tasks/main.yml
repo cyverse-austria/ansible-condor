@@ -1,28 +1,11 @@
 ---
-# - name: Import the PGP key used by HTCondor
-#   ansible.builtin.rpm_key:
-#     key: "https://research.cs.wisc.edu/htcondor/repo/keys/HTCondor-10.x-Key"
-#     state: "present"
-#
-# - name: Add the YUM repository file
-#   ansible.builtin.yum:
-#     # name: "https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el8.noarch.rpm"
-#     name: "https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el7.noarch.rpm"
-#     state: "present"
-#
-# - name: Install Condor
-#   ansible.builtin.yum:
-#     name: "condor"
-#     state: "present"
-    # enablerepo: "powertools"
-    # enablerepo: "htcondor-previous"
+- name: Get master-host
+  ansible.builtin.set_fact:
+    condor_masuex_master_host: "{{ groups['condor_manager'][0] }}"
 
-# - name: Install Condor
-#   ansible.builtin.yum:
-#     name: "condor-all"
-#     state: "present"
-#     # enablerepo: "powertools"
-#     # enablerepo: "htcondor-previous"
+- name: Get master-host fqdn
+  ansible.builtin.set_fact:
+    condor_masuex_master_fqdn: "{{ hostvars[condor_masuex_master_host].ansible_facts.fqdn }}"
 
 - name: Ensure that the execute directory exists
   ansible.builtin.file:
@@ -49,33 +32,6 @@
   notify:
     - Common | restart condor
 
-# - name: Generate the main configuration file
-#   ansible.builtin.template:
-#     src: "condor_config.local.j2"
-#     dest: "/etc/condor/condor_config.local"
-#     owner: "root"
-#     group: "root"
-#     mode: "0644"
-
-# - name: Copy some config-files
-#   ansible.builtin.copy:
-#     src: "{{ item }}"
-#     dest: /etc/condor/
-#     owner: root
-#     group: root
-#     mode: '0755'
-#   with_items:
-#     - "config.d"
-#     - "ganglia.d"
-#
-# - name: Copy some config-files
-#   ansible.builtin.copy:
-#     src: condor_config
-#     dest: /etc/condor/
-#     owner: root
-#     group: root
-#     mode: '0644'
-
 - name: Generate the execution directory configuration file
   ansible.builtin.template:
     src: "etc/condor/config.d/03-exec-dir.j2"
@@ -85,10 +41,6 @@
     mode: "0644"
   notify:
     - Common | restart condor
-
-# - name: Store the pool password
-#   ansible.builtin.command: "condor_store_cred -f /var/lib/condor/pool_password -p {{ condor_password | quote }}"
-#   when: condor_password != ""
 
 - name: Store the pool password
   ansible.builtin.shell:
@@ -101,13 +53,13 @@
   notify:
     - Common | restart condor
 
-- name: Create tocken
+- name: Create token
   ansible.builtin.shell:
     cmd: >
       set -o pipefail &&
-      condor_token_create -identity condor@manager >
-      /etc/condor/tokens.d/condor@manager
+      condor_token_create -identity condor@{{ condor_masuex_master_fqdn }} >
+      /etc/condor/tokens.d/condor@{{ condor_masuex_master_fqdn }}
     # TODO: make var
-    creates: /etc/condor/tokens.d/condor@manager
+    creates: /etc/condor/tokens.d/condor@{{ condor_masuex_master_fqdn }}
   notify:
     - Common | restart condor
