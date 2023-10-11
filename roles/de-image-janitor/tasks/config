@@ -1,0 +1,11 @@
+---
+config:
+  DE:
+    AMQP:
+      User: "ego"
+      Password: "secret"
+      Host: "host"
+      Port: 1234
+      Vhost: "none"
+  BaseULRs:
+    Apps: "app"

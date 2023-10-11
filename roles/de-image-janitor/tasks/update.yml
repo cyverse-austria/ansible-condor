@@ -2,12 +2,20 @@
 - name: pull image-janitor image
   shell: docker pull harbor.cyverse.org/de/image-janitor:{{docker.tag}}
 
-# TODO: come up with a way to generate the file and place it on the remote host
-- name: ensure that jobservices.yml exists
-  become: yes
-  file:
-    path: /etc/jobservices.yml
-    state: touch
+# # TODO: come up with a way to generate the file and place it on the remote host
+# - name: ensure that jobservices.yml exists
+#   become: yes
+#   file:
+#     path: /etc/jobservices.yml
+#     state: touch
+
+- name: Add jobservices.yml
+  ansible.builtin.template:
+    src: jobservices.yml.j2
+    dest: /etc/jobservices.yml
+    owner: root
+    group: root
+    mode: "0644"
 
 - name: install image-janitor
   shell: docker run --rm -v /usr/local/bin:/image-janitor --entrypoint "cp" harbor.cyverse.org/de/image-janitor:{{docker.tag}} /go/bin/image-janitor /image-janitor/image-janitor
