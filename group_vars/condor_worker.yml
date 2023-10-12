@@ -48,8 +48,6 @@ maftest:
     Password: "Password"
     Port: "Port"
     User: "User"
-  QMS:
-    Enabled: "Enabled"
   UIDDomain: "UIDDomain"
   VICE:
     BaseURI: "BaseURI"
@@ -59,4 +57,3 @@ maftest:
       Image: "Image"
       Tag: "Tag"
     ImagePullSecret: "ImagePullSecret"
-    UseCSIDriver: "UseCSIDriver"

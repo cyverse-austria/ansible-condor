@@ -81,7 +81,7 @@ porklock:
   tag: "{{maftest.Jobs.DataTransferTag}}"
 
 qms:
-  enabled: {{maftest.QMS.Enabled}}
+  enabled: true
   base: "{{maftest.BaseURLs.QMS}}"
   usage: "/v1/admin/usages"
 
@@ -101,7 +101,7 @@ vice:
     base: "{{maftest.BaseURLs.JobStatusListener}}"
   image-pull-secret: "{{ maftest.VICE.ImagePullSecret }}"
   backend-namespace: "{{maftest.Namespace}}"
-  use_csi_driver: {{maftest.VICE.UseCSIDriver}}
+  use_csi_driver: true
   default_backend:
     loading_page_url: "{{maftest.VICE.DefaultBackend.LoadingPageTemplateString}}"
     base_url: "{{maftest.VICE.BaseURI}}"
