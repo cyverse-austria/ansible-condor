@@ -16,6 +16,8 @@
     - role: timezone
     - role: condor_masuex
     - role: de-condor-launcher
+    - role: de-road-runner
+    
       vars:
         condor_role: "submit"
 
@@ -42,7 +44,7 @@
     - role: de-docker-logging-plugin
     - role: de-image-janitor
     - role: de-network-pruner
-    - role: de-road-runner
+    # - role: de-road-runner
 
 - name: Log into required docker registries
   hosts: condor
