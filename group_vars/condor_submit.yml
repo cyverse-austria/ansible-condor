@@ -1,0 +1,59 @@
+maftest:
+  BaseURLs:
+    Apps: "Apps"
+    IplantEmail: "IplantEmail"
+    IplantGroups:
+      Base: "Base"
+      User: "User"
+    JobStatusListener: "JobStatusListener"
+    Metadata: "Metadata"
+    Notifications: "Notifications"
+    QMS: "QMS"
+  DE:
+    AMQP:
+      Host: "Host"
+      Password: "Password"
+      Port: "Port"
+      User: "User"
+      Vhost: "Vhost"
+  DEDB:
+    Host: "Host"
+    Name: "Name"
+    Password: "Password"
+    Port: "Port"
+    User: "User"
+  Docker:
+    Tag: "Tag"
+  Email:
+    SupportDest: "SupportDest"
+  IRODS:
+    ExternalHost: "ExternalHost"
+    Host: "Host"
+    Password: "Password"
+    User: "User"
+    Zone: "Zone"
+  Jobs:
+    DataTransferImage: "DataTransferImage"
+    DataTransferTag: "DataTransferTag"
+  Keycloak:
+    Realm: "Realm"
+    ServerURI: "ServerURI"
+    VICE:
+      ClientID: "VICE.ClientID"
+      ClientSecret: "VICE.ClientSecret"
+  Namespace:
+  NewNotificationsDB:
+    Host: "Host"
+    Name: "Name"
+    Password: "Password"
+    Port: "Port"
+    User: "User"
+  UIDDomain: "UIDDomain"
+  VICE:
+    BaseURI: "BaseURI"
+    DefaultBackend:
+      LoadingPageTemplateString: "LoadingPageTemplateString"
+    FileTransfers:
+      Image: "Image"
+      Tag: "Tag"
+    ImagePullSecret: "ImagePullSecret"
