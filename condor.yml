@@ -1,6 +1,25 @@
 ---
-- name: Install prerequisites
-  hosts: condor
+
+- name: Condor manager
+  hosts: condor_manager
+  become: true
+  roles:
+    - role: timezone
+    - role: condor_masuex
+      vars:
+        condor_role: "central_manager"
+
+- name: Condor submit
+  hosts: condor_submit
+  become: true
+  roles:
+    - role: timezone
+    - role: condor_masuex
+      vars:
+        condor_role: "submit"
+
+- name: Condor worker
+  hosts: condor_worker
   become: true
   tasks:
     - name: Get pip
@@ -12,68 +31,13 @@
         name: "docker"
         state: present
         executable: "pip3"
-
-- name: Condor manager
-  hosts: condor_manager
-  become: true
   roles:
     - role: timezone
     - role: docker
     - role: docker-compose
-    - role: condor-manager
+    - role: condor_masuex
       vars:
-        condor_admin: "{{ condor.admin }}"
-        condor_uid_domain: "{{ condor.uid_domain }}"
-        condor_filesystem_domain: "{{ condor.filesystem_domain }}"
-        condor_collector_name: "{{ condor.collector_name }}"
-        condor_allow_read: "{{ condor.allow_read }}"
-        condor_allow_write: "{{ condor.allow_write }}"
-        condor_exec_dir: "{{ condor.exec_dir }}"
-        condor_password: "{{ condor.password }}"
-    - role: de-docker-logging-plugin
-    - role: de-image-janitor
-    - role: de-network-pruner
-    - role: de-road-runner
-
-- name: Condor submit
-  hosts: condor_submit
-  become: true
-  roles:
-    - role: timezone
-    - role: docker
-    - role: docker-compose
-    - role: condor-submit
-      vars:
-        condor_admin: "{{ condor.admin }}"
-        condor_uid_domain: "{{ condor.uid_domain }}"
-        condor_filesystem_domain: "{{ condor.filesystem_domain }}"
-        condor_collector_name: "{{ condor.collector_name }}"
-        condor_allow_read: "{{ condor.allow_read }}"
-        condor_allow_write: "{{ condor.allow_write }}"
-        condor_exec_dir: "{{ condor.exec_dir }}"
-        condor_password: "{{ condor.password }}"
-    - role: de-docker-logging-plugin
-    - role: de-image-janitor
-    - role: de-network-pruner
-    - role: de-road-runner
-
-- name: Condor worker
-  hosts: condor_worker
-  become: true
-  roles:
-    - role: timezone
-    - role: docker
-    - role: docker-compose
-    - role: condor-exec-node
-      vars:
-        condor_admin: "{{ condor.admin }}"
-        condor_uid_domain: "{{ condor.uid_domain }}"
-        condor_filesystem_domain: "{{ condor.filesystem_domain }}"
-        condor_collector_name: "{{ condor.collector_name }}"
-        condor_allow_read: "{{ condor.allow_read }}"
-        condor_allow_write: "{{ condor.allow_write }}"
-        condor_exec_dir: "{{ condor.exec_dir }}"
-        condor_password: "{{ condor.password }}"
+        condor_role: "execute"
     - role: de-docker-logging-plugin
     - role: de-image-janitor
     - role: de-network-pruner
@@ -87,3 +51,5 @@
     - command: "docker login -u {{ item.user }} -p {{ item.password | quote }} {{ item.host }}"
       loop: "{{ docker_registries }}"
       when: docker_registries is defined
+
+# vim: set ft=yaml.ansible :

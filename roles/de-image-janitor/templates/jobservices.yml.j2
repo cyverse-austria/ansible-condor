@@ -1,0 +1,107 @@
+amqp:
+  uri: amqp://{{maftest.DE.AMQP.User}}:{{maftest.DE.AMQP.Password | urlencode}}@{{maftest.DE.AMQP.Host}}:{{maftest.DE.AMQP.Port}}/{{maftest.DE.AMQP.Vhost | urlencode}}
+  exchange:
+    name: de
+    type: topic
+  prefetch:
+    stops: 32
+    launches: 32
+    events: 0
+
+apps:
+  base: "{{maftest.BaseURLs.Apps}}"
+  callbacks_uri: "{{maftest.BaseURLs.Apps}}/callbacks/de-job"
+
+condor:
+  condor_config: /etc/condor/condor_config
+  path_env_var: /opt/condor/bin/:/usr/bin/:/usr/local/bin/:/bin/
+  log_path: /tmp/
+  request_disk: 0
+  filter_files: .job.ad,.machine.ad,_condor_stderr,_condor_stdout,condor_exec.exe,.chirp_config,.chirp.config,logs/logs-stderr-output,logs/logs-stdout-output,config,job,iplant.cmd
+
+db:
+  uri: postgresql://{{maftest.DEDB.User}}:{{maftest.DEDB.Password | urlencode}}@{{maftest.DEDB.Host}}:{{maftest.DEDB.Port}}/{{maftest.DEDB.Name}}?sslmode=disable
+
+email:
+  request: "{{maftest.Email.SupportDest}}"
+
+external_irods:
+  host: "{{maftest.IRODS.ExternalHost}}"
+  port: "1247"
+  user: "job"
+
+graphql:
+  uri: http://de-graphql
+
+interapps:
+  proxy:
+    tag: "{{maftest.Docker.Tag}}"
+
+iplant_email:
+  base: "{{maftest.BaseURLs.IplantEmail}}"
+
+iplant_groups:
+  base: "{{maftest.BaseURLs.IplantGroups.Base}}"
+  user: "{{maftest.BaseURLs.IplantGroups.User}}"
+
+irods:
+  user: "{{maftest.IRODS.User}}"
+  pass: "{{maftest.IRODS.Password}}"
+  host: "{{maftest.IRODS.Host}}"
+  port: 1247
+  base: "/{{maftest.IRODS.Zone}}/home"
+  resc: ""
+  zone: "{{maftest.IRODS.Zone}}"
+
+k8s:
+  frontend:
+    base: "{{maftest.VICE.BaseURI}}"
+
+keycloak:
+  base: "{{maftest.Keycloak.ServerURI}}"
+  realm: "{{maftest.Keycloak.Realm}}"
+  client-id: "{{maftest.Keycloak.VICE.ClientID}}"
+  client-secret: "{{maftest.Keycloak.VICE.ClientSecret}}"
+
+metadata:
+  base: "{{maftest.BaseURLs.Metadata}}"
+
+notification_agent:
+  base: "{{maftest.BaseURLs.Notifications}}"
+
+notifications:
+  db:
+    uri: "postgresql://{{maftest.NewNotificationsDB.User}}:{{maftest.NewNotificationsDB.Password | urlencode}}@{{maftest.NewNotificationsDB.Host}}:{{maftest.NewNotificationsDB.Port}}/{{maftest.NewNotificationsDB.Name}}?sslmode=disable"
+
+path_list:
+  file_identifier: "# application/vnd.de.multi-input-path-list+csv; version=1"
+
+porklock:
+  image: "{{maftest.Jobs.DataTransferImage}}"
+  tag: "{{maftest.Jobs.DataTransferTag}}"
+
+qms:
+  enabled: {{maftest.QMS.Enabled}}
+  base: "{{maftest.BaseURLs.QMS}}"
+  usage: "/v1/admin/usages"
+
+tickets_path_list:
+  file_identifier: "# application/vnd.de.tickets-path-list+csv; version=1"
+
+users:
+  domain: "{{maftest.UIDDomain}}"
+
+vice:
+  db:
+    uri: "postgresql://{{maftest.DEDB.User}}:{{maftest.DEDB.Password | urlencode}}@{{maftest.DEDB.Host}}:{{maftest.DEDB.Port}}/{{maftest.DEDB.Name}}?sslmode=disable"
+  file-transfers:
+    image: "{{maftest.VICE.FileTransfers.Image}}"
+    tag: "{{maftest.VICE.FileTransfers.Tag}}"
+  job-status:
+    base: "{{maftest.BaseURLs.JobStatusListener}}"
+  image-pull-secret: "{{ maftest.VICE.ImagePullSecret }}"
+  backend-namespace: "{{maftest.Namespace}}"
+  use_csi_driver: {{maftest.VICE.UseCSIDriver}}
+  default_backend:
+    loading_page_url: "{{maftest.VICE.DefaultBackend.LoadingPageTemplateString}}"
+    base_url: "{{maftest.VICE.BaseURI}}"
