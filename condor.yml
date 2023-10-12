@@ -15,6 +15,7 @@
   roles:
     - role: timezone
     - role: condor_masuex
+    - role: de-condor-launcher
       vars:
         condor_role: "submit"
 
