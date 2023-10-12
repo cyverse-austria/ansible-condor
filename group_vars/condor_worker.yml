@@ -2,7 +2,9 @@ maftest:
   BaseURLs:
     Apps: "Apps"
     IplantEmail: "IplantEmail"
-    IplantGroups: "IplantGroups"
+    IplantGroups:
+      Base: "Base"
+      User: "User"
     JobStatusListener: "JobStatusListener"
     Metadata: "Metadata"
     Notifications: "Notifications"
