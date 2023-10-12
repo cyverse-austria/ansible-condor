@@ -1,4 +1,3 @@
 ## Which machine is your central manager?
-# CONDOR_HOST = {{ groups['condor_manager'][0] }}
 CONDOR_HOST = {{ condor_masuex_master_fqdn }}
 use role:get_htcondor_{{ condor_role }}

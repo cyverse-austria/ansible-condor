@@ -59,7 +59,6 @@
       set -o pipefail &&
       condor_token_create -identity condor@{{ condor_masuex_master_fqdn }} >
       /etc/condor/tokens.d/condor@{{ condor_masuex_master_fqdn }}
-    # TODO: make var
     creates: /etc/condor/tokens.d/condor@{{ condor_masuex_master_fqdn }}
   notify:
     - Common | restart condor
