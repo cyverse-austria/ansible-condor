@@ -1,6 +1,6 @@
 ---
 
-environment_name: example
+environment_name: qa
 timezone: Europe/Vienna
 docker:
   tag: "latest"
@@ -13,7 +13,7 @@ docker:
 #     password: "notreal"
 #     test_image: "registry.example.org/image:latest"
 condor:
-  admin: "admin@example.org"
+  admin: "grid@tugraz.at"
   uid_domain: "cyverse.at"
   filesystem_domain: "cyverse.at"
   collector_name: "example-collector"
