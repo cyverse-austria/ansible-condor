@@ -14,11 +14,11 @@ docker:
 #     test_image: "registry.example.org/image:latest"
 condor:
   admin: "admin@example.org"
-  uid_domain: "local2.net"
-  filesystem_domain: "local2.net"
+  uid_domain: "cyverse.at"
+  filesystem_domain: "cyverse.at"
   collector_name: "example-collector"
-  allow_read: ["127.0.0.1/32", "192.168.245.0/24"]
-  allow_write: ["127.0.0.1/32", "192.168.245.0/24"]
+  allow_read: ["*.cyverse.at", "161.35.144.75/24,164.92.152.191/24,164.92.152.162/24,164.92.152.187/24"]
+  allow_write: ["*.cyverse.at", "161.35.144.75/24,164.92.152.191/24,164.92.152.162/24,164.92.152.187/24"]
   # allow_read: ["*.example.org", "1.2.3.0/24"]
   # allow_write: ["*.example.org", "1.2.3.0/24"]
   exec_dir: "/var/lib/condor/execute"
