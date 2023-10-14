@@ -11,8 +11,8 @@
   get_url:
     url: "https://github.com/cyverse-de/image-janitor/releases/download/v0.0.3/image-janitor"
     dest: "/usr/local/bin/image-janitor"
-    owner: root
-    group: root
+    # owner: root
+    # group: root
     mode: "0755"
 
 - include: systemd.yml
