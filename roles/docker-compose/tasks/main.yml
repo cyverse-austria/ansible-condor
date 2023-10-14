@@ -13,3 +13,11 @@
     state: present
   tags:
     - install
+
+- name: Download Docker Compose
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-{{ ansible_system }}-{{ ansible_machine }}"
+    dest: /usr/bin/docker-compose
+    mode: '0755'
+  vars:
+    docker_compose_version: 2.22.0  # Change this to the desired version
