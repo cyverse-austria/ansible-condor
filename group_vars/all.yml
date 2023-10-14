@@ -21,7 +21,7 @@ condor:
   allow_write: ["*.cyverse.at", "127.0.0.1,161.35.144.75/24,164.92.152.191/24,164.92.152.162/24,164.92.152.187/24"]
   # allow_read: ["*.example.org", "1.2.3.0/24"]
   # allow_write: ["*.example.org", "1.2.3.0/24"]
-  exec_dir: "/var/lib/condor/execute"
+  exec_dir: "/var/lib/condor/execute/jobs"
   # password: "notreal"
   password: "notreal:seemstobemuchtoshort.sothisoneisalongerversionofapassword"
 
