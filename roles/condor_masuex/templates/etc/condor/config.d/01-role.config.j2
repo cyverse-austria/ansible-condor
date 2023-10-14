@@ -3,7 +3,16 @@ CONDOR_HOST = {{ condor_masuex_master_fqdn }}
 use role:get_htcondor_{{ condor_role }}
 
 
-
+#################################
+## Added for iPlant Collaborative
+#################################
+CONDOR_ADMIN        = {{ condor_admin }}
+UID_DOMAIN          = {{ condor_uid_domain }}
+FILESYSTEM_DOMAIN   = {{ condor_filesystem_domain }}
+ALLOW_READ          = {{ condor_allow_read | join(',') }}
+ALLOW_WRITE         = {{ condor_allow_write | join(',') }}
+HIGHPORT            = 65535
+LOWPORT             = 61440
 
 HAS_CYVERSE_ROAD_RUNNER = True
 STARTD_ATTRS = $(STARTD_ATTRS) HAS_HOST_MOUNTS HAS_CYVERSE_ROAD_RUNNER
