@@ -11,8 +11,8 @@
   ansible.builtin.file:
     path: "{{ condor_exec_dir }}"
     state: "directory"
-    owner: "root"
-    group: "root"
+    owner: "condor"
+    group: "condor"
     mode: "0755"
 
 - name: Old ver.9 File should not exist
