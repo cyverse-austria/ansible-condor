@@ -11,7 +11,7 @@
       dest: "/lib/systemd/system/condor-launcher.service"
       group: "root"
       owner: "root"
-      mode: 0644
+      mode: "0644"
 
 - name: Reload systemd
   shell: systemctl daemon-reload
