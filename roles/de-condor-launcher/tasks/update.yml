@@ -18,10 +18,4 @@
     group: root
     mode: "0755"
 
-# - name: pull condor-launcher image
-#   shell: docker pull discoenv/condor-launcher:{{docker.tag}}
-
-# - name: install condor-launcher
-#   shell: docker run --rm -v /usr/local/bin:/condor-launcher --entrypoint "cp" discoenv/condor-launcher:{{docker.tag}} /go/bin/condor-launcher /condor-launcher/condor-launcher
-
 - include: systemd.yml

@@ -1,18 +1,18 @@
 ---
 
-# - name: Add jobservices.yml
-#   ansible.builtin.template:
-#     src: jobservices.yml.j2
-#     dest: /etc/jobservices.yml
-#     owner: root
-#     group: root
-#     mode: "0644"
+- name: Add jobservices.yml
+  ansible.builtin.template:
+    src: jobservices.yml.j2
+    dest: /etc/jobservices.yml
+    owner: root
+    group: root
+    mode: "0644"
 
 - name: download road-runner release
   get_url:
     url: "https://github.com/cyverse-de/road-runner/releases/download/v0.0.1/road-runner"
     dest: "/usr/local/bin/road-runner"
-    owner: root
-    group: root
+    # owner: root
+    # group: root
     mode: "0755"
 

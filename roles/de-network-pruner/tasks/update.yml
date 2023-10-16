@@ -2,10 +2,12 @@
 - name: create /var/log/network-pruner
   file: path=/var/log/network-pruner owner=root group=root mode=0755 state=directory
 
-- name: pull network-pruner image
-  shell: docker pull harbor.cyverse.org/de/network-pruner:{{docker.tag}}
-
-- name: install network-pruner
-  shell: docker run --rm -v /usr/local/bin:/network-pruner --entrypoint "cp" harbor.cyverse.org/de/network-pruner:{{docker.tag}} /go/bin/network-pruner /network-pruner/network-pruner
+- name: download network-pruner release
+  get_url:
+    url: "https://github.com/cyverse-de/network-pruner/releases/download/v0.0.9/network-pruner"
+    dest: "/usr/local/bin/network-pruner"
+    owner: root
+    group: root
+    mode: "0755"
 
 - include: systemd.yml

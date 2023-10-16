@@ -1,5 +1,8 @@
 ## Which machine is your central manager?
 CONDOR_HOST = {{ condor_masuex_master_fqdn }}
 use role:get_htcondor_{{ condor_role }}
+
+
+
 HAS_CYVERSE_ROAD_RUNNER = True
 STARTD_ATTRS = $(STARTD_ATTRS) HAS_HOST_MOUNTS HAS_CYVERSE_ROAD_RUNNER

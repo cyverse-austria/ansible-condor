@@ -20,9 +20,9 @@
   file:
     path: /opt/image-janitor
     state: directory
-    owner: condor
-    group: condor
-    mode: 0755
+    owner: "condor"
+    group: "condor"
+    mode: "0755"
   tags:
     - image-janitor
 

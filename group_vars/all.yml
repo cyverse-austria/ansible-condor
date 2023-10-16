@@ -1,6 +1,6 @@
 ---
 
-environment_name: example
+environment_name: qa
 timezone: Europe/Vienna
 docker:
   tag: "latest"
@@ -13,15 +13,15 @@ docker:
 #     password: "notreal"
 #     test_image: "registry.example.org/image:latest"
 condor:
-  admin: "admin@example.org"
-  uid_domain: "local2.net"
-  filesystem_domain: "local2.net"
+  admin: "grid@tugraz.at"
+  uid_domain: "cyverse.at"
+  filesystem_domain: "cyverse.at"
   collector_name: "example-collector"
-  allow_read: ["127.0.0.1/32", "192.168.245.0/24"]
-  allow_write: ["127.0.0.1/32", "192.168.245.0/24"]
+  allow_read: ["*.cyverse.at", "127.0.0.1,134.209.82.111/24,134.209.82.110/24,174.138.2.245/24,134.209.82.109/24"]
+  allow_write: ["*.cyverse.at", "127.0.0.1,134.209.82.111/24,134.209.82.110/24,174.138.2.245/24,134.209.82.109/24"]
   # allow_read: ["*.example.org", "1.2.3.0/24"]
   # allow_write: ["*.example.org", "1.2.3.0/24"]
-  exec_dir: "/var/lib/condor/execute"
+  exec_dir: "/var/lib/condor/execute/jobs"
   # password: "notreal"
   password: "notreal:seemstobemuchtoshort.sothisoneisalongerversionofapassword"
 
