@@ -16,6 +16,7 @@
 
 - name: Get porklock
   ansible.builtin.shell:
+    # this url is from an old role
     cmd: docker pull harbor.cyverse.org/de/porklock:latest
 
 # - name: set condor_config.local.j2

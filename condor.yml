@@ -29,7 +29,7 @@
   roles:
     - role: condor_masuex
       vars:
-        condor_masues_condor_role: "central_manager"
+        condor_role: "central_manager"
 
 - name: Condor submit
   hosts: condor_submit
@@ -37,7 +37,7 @@
   roles:
     - role: condor_masuex
       vars:
-        condor_masues_condor_role: "submit"
+        condor_role: "submit"
     - role: de-condor-launcher
     - role: de-road-runner
 
@@ -48,7 +48,7 @@
   roles:
     - role: condor_masuex
       vars:
-        condor_masues_condor_role: "submit"
+        condor_role: "execute"
 
 - name: Docker stuff
   hosts: condor:!condor_manager
@@ -67,7 +67,7 @@
 #     - role: timezone
 #     - role: condor_masuex
 #       vars:
-#         condor_masues_condor_role: "central_manager"
+#         condor_role: "central_manager"
 #
 # - name: Condor submit
 #   hosts: condor_submit
@@ -88,7 +88,7 @@
 #     - role: docker-compose
 #     - role: condor_masuex
 #       vars:
-#         condor_masues_condor_role: "submit"
+#         condor_role: "submit"
 #     - role: de-condor-launcher
 #     - role: de-road-runner
 #     - role: de-network-pruner
@@ -115,7 +115,7 @@
 #     - role: docker-compose
 #     - role: condor_masuex
 #       vars:
-#         condor_masues_condor_role: "execute"
+#         condor_role: "execute"
 #     - role: de-docker-logging-plugin
 #     - role: de-image-janitor
 #     - role: de-network-pruner
