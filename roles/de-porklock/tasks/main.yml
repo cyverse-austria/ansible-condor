@@ -1,16 +1,22 @@
 ---
-- name: allow condor to run docker commands
-  user: name=condor groups=docker
+- name: Allow condor to run docker commands
+  ansible.builtin.user:
+    name: condor
+    groups: docker
 
-- name: Pull porklock image
-  shell: docker pull {{docker.user}}/porklock:{{docker.tag}}
-  tags:
-      - docker_pull
+# - name: Pull porklock image
+#   ansible.builtin.shell: docker pull {{docker.user}}/porklock:{{docker.tag}}
+#   tags:
+#       - docker_pull
+#
+# - name: Pull curl-wrapper image
+#   ansible.builtin.shell: docker pull {{docker.user}}/curl-wrapper:{{docker.tag}}
+#   tags:
+#       - docker_pull
 
-- name: Pull curl-wrapper image
-  shell: docker pull {{docker.user}}/curl-wrapper:{{docker.tag}}
-  tags:
-      - docker_pull
+- name: Get porklock
+  ansible.builtin.shell:
+    cmd: docker pull harbor.cyverse.org/de/porklock:latest
 
 # - name: set condor_config.local.j2
 #   template: src=condor_config.local.j2 dest=/etc/condor/condor_config.local owner=root group=root mode=0644
