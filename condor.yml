@@ -41,7 +41,7 @@
     - role: de-condor-launcher
     - role: de-road-runner
 
-- name:
+- name: Condor worker
   hosts: condor_worker
   become: true
   tasks:
@@ -59,68 +59,6 @@
     - role: de-docker-logging-plugin
     - role: de-porklock
 
-# # old
-# - name: Condor manager
-#   hosts: condor_manager
-#   become: true
-#   roles:
-#     - role: timezone
-#     - role: condor_masuex
-#       vars:
-#         condor_role: "central_manager"
-#
-# - name: Condor submit
-#   hosts: condor_submit
-#   become: true
-#   tasks:
-#     - name: Get pip
-#       ansible.builtin.package:
-#         name: "python3-pip"
-#         state: "present"
-#     - name: Get docker
-#       ansible.builtin.pip:
-#         name: "docker"
-#         state: present
-#         executable: "pip3"
-#   roles:
-#     - role: timezone
-#     - role: docker
-#     - role: docker-compose
-#     - role: condor_masuex
-#       vars:
-#         condor_role: "submit"
-#     - role: de-condor-launcher
-#     - role: de-road-runner
-#     - role: de-network-pruner
-#     - role: de-image-janitor
-#     - role: de-docker-logging-plugin
-#     - role: de-porklock
-#
-# - name: Condor worker
-#   hosts: condor_worker
-#   become: true
-#   tasks:
-#     - name: Get pip
-#       ansible.builtin.package:
-#         name: "python3-pip"
-#         state: "present"
-#     - name: Get docker
-#       ansible.builtin.pip:
-#         name: "docker"
-#         state: present
-#         executable: "pip3"
-#   roles:
-#     - role: timezone
-#     - role: docker
-#     - role: docker-compose
-#     - role: condor_masuex
-#       vars:
-#         condor_role: "execute"
-#     - role: de-docker-logging-plugin
-#     - role: de-image-janitor
-#     - role: de-network-pruner
-#     # - role: de-road-runner
-#
 - name: Log into required docker registries
   hosts: condor
   become: true
