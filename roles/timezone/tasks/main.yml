@@ -1,15 +1,6 @@
 ---
-- name: Ensure that tzdata is installed via yum
-  become: true
-  ansible.builtin.yum:
-    name: tzdata
-    state: latest
-
-- name: Ensure that tzdata-java is installed via yum
-  become: true
-  ansible.builtin.yum:
-    name: tzdata-java
-    state: latest
+- name: Install tzdata
+  ansible.builtin.include_tasks: "{{ ansible_os_family }}.yml"
 
 - name: Link the correct time zone to /etc/localtime
   become: true

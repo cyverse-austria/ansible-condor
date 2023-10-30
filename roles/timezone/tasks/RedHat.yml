@@ -1,0 +1,12 @@
+---
+- name: Ensure that tzdata is installed via yum
+  become: true
+  ansible.builtin.yum:
+    name: tzdata
+    state: present
+
+- name: Ensure that tzdata-java is installed via yum
+  become: true
+  ansible.builtin.yum:
+    name: tzdata-java
+    state: present

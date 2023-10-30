@@ -1,0 +1,23 @@
+---
+- name: Add repo key
+  ansible.builtin.apt_key:
+    url: "https://download.docker.com/linux/debian/gpg"
+    state: present
+    keyring: /etc/apt/trusted.gpg.d/docker.gpg
+
+- name: Add repo
+  ansible.builtin.apt_repository:
+    repo: >
+      deb https://download.docker.com/linux/debian
+      {{ ansible_distribution_release }} stable
+    filename: docker
+    state: present
+
+- name: Install docker-compose plugin
+  ansible.builtin.apt:
+    name: docker-compose-plugin
+    state: present
+    update_cache: true
+
+      # deb [arch={{ ansible_architecture }}
+      # signed-by=/etc/apt/keyrings/docker.gpg]

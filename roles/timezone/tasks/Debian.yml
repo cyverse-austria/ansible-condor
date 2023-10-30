@@ -1,0 +1,12 @@
+---
+- name: Update apt-cache
+  ansible.builtin.apt:
+    # name: "*"
+    # state: latest
+    update_cache: true
+
+- name: Ensure tzdata is installed
+  become: true
+  ansible.builtin.apt:
+    name: tzdata
+    state: present

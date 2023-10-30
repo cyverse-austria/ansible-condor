@@ -1,0 +1,18 @@
+---
+
+- name: Import the PGP key used by HTCondor
+  ansible.builtin.rpm_key:
+    key: "https://research.cs.wisc.edu/htcondor/repo/keys/HTCondor-23.0-Key"
+    state: "present"
+
+- name: Add the YUM repository file
+  ansible.builtin.yum:
+    name:
+      - "https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el9.noarch.rpm"
+    skip_broken: true
+    state: "present"
+
+- name: Install Condor
+  ansible.builtin.yum:
+    name: "condor"
+    state: "present"

@@ -50,6 +50,7 @@
       condor_store_cred add -c -i -
     # TODO: make var
     creates: /etc/condor/passwords.d/POOL
+    executable: /bin/bash
   notify:
     - Common | restart condor
 
@@ -60,5 +61,6 @@
       condor_token_create -identity condor@{{ condor_masuex_master_fqdn }} >
       /etc/condor/tokens.d/condor@{{ condor_masuex_master_fqdn }}
     creates: /etc/condor/tokens.d/condor@{{ condor_masuex_master_fqdn }}
+    executable: /bin/bash
   notify:
     - Common | restart condor

@@ -1,0 +1,26 @@
+---
+- name: Install repos and packages
+  tags:
+    - install
+  # notify:
+  #   - Restart and enable docker
+  block:
+    - name: Get docker
+      ansible.builtin.pip:
+        name: "docker"
+        state: present
+        executable: "pip3"
+
+    - name: Add repo file
+      ansible.builtin.get_url:
+        dest: "/etc/yum.repos.d/docker-ce.repo"
+        url: "https://download.docker.com/linux/centos/docker-ce.repo"
+        mode: "0644"
+
+    - name: Install Docker CLI
+      ansible.builtin.yum:
+        name:
+          - docker-ce-cli
+          - docker-ce
+          - containerd.io
+        state: present
