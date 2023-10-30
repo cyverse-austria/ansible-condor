@@ -1,28 +1,13 @@
 ---
 
-- name: Condor manager
-  hosts: condor_manager
+- name: Timezone
+  hosts: condor
   become: true
   roles:
     - role: timezone
-    - role: condor_masuex
-      vars:
-        condor_role: "central_manager"
 
-- name: Condor submit
-  hosts: condor_submit
-  become: true
-  roles:
-    - role: timezone
-    - role: condor_masuex
-    - role: de-condor-launcher
-    - role: de-road-runner
-    
-      vars:
-        condor_role: "submit"
-
-- name: Condor worker
-  hosts: condor_worker
+- name: Docker stuff
+  hosts: condor:!condor_manager
   become: true
   tasks:
     - name: Get pip
@@ -35,16 +20,44 @@
         state: present
         executable: "pip3"
   roles:
-    - role: timezone
     - role: docker
     - role: docker-compose
+
+- name: Condor manager
+  hosts: condor_manager
+  become: true
+  roles:
+    - role: condor_masuex
+      vars:
+        condor_role: "central_manager"
+
+- name: Condor submit
+  hosts: condor_submit
+  become: true
+  roles:
+    - role: condor_masuex
+      vars:
+        condor_role: "submit"
+    - role: de-condor-launcher
+    - role: de-road-runner
+
+- name: Condor worker
+  hosts: condor_worker
+  become: true
+  tasks:
+  roles:
     - role: condor_masuex
       vars:
         condor_role: "execute"
-    - role: de-docker-logging-plugin
-    - role: de-image-janitor
+
+- name: Docker stuff
+  hosts: condor:!condor_manager
+  become: true
+  roles:
     - role: de-network-pruner
-    # - role: de-road-runner
+    - role: de-image-janitor
+    - role: de-docker-logging-plugin
+    - role: de-porklock
 
 - name: Log into required docker registries
   hosts: condor

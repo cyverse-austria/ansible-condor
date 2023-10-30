@@ -1,0 +1,20 @@
+---
+- name: Allow condor to run docker commands
+  ansible.builtin.user:
+    name: condor
+    groups: docker
+
+- name: Condor in docker-group
+  ansible.builtin.user:
+    name: condor
+    groups: docker
+
+- name: Pull porklock image
+  ansible.builtin.docker_image:
+    name: discoenv/porklock
+    tag: "{{ docker.tag }}"
+    source: pull
+
+# - name: Pull curl-wraper image
+#   ansible.builtin.shell:
+#     cmd: docker pull discoenv/curl-wrapper

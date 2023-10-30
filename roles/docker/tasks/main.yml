@@ -28,6 +28,8 @@
 - name: Install repos and packages
   tags:
     - install
+  notify:
+    - Restart and enable docker
   block:
     - name: Add repo file
       ansible.builtin.get_url:
@@ -54,27 +56,3 @@
       ansible.builtin.package:
         name: docker-compose-plugin
         state: present
-
-- name: Restart and enable docker
-  ansible.builtin.systemd:
-    name: docker
-    enabled: true
-    daemon_reload: true
-    state: restarted
-  tags:
-    - restart_docker
-#
-# - name: enable docker
-#   service:
-#      name: docker
-#      enabled: yes
-#   tags:
-#       - enable_docker
-#
-# - name: restart docker
-#   service:
-#      name: docker
-#      state: restarted
-#      enabled: yes
-#   tags:
-#       - restart_docker

@@ -22,8 +22,8 @@
 
 - name: Set current time zone in /etc/timezone
   become: true
-  ansible.builtin.template:
-    src: timezone.j2
+  ansible.builtin.copy:
+    content: "{{ timezone }}"
     dest: /etc/timezone
     owner: root
     group: root
