@@ -13,7 +13,6 @@
     - name: Add repo key
       ansible.builtin.apt_key:
         url: "https://research.cs.wisc.edu/htcondor/repo/keys/HTCondor-10.x-Key"
-        # url: "https://research.cs.wisc.edu/htcondor/debian/HTCondor-Release.gpg.key"
         state: present
         keyring: /etc/apt/trusted.gpg.d/htcondor.gpg
 
@@ -24,22 +23,6 @@
           {{ ansible_distribution_release }} main
         filename: htcondor
         state: present
-# deb [arch=amd64] http://research.cs.wisc.edu/htcondor/repo/debian/10.x bookworm main
-    # - name: Add repo
-    #   ansible.builtin.apt_repository:
-    #     repo: >
-    #       # deb http://research.cs.wisc.edu/htcondor/debian/8.8/buster buster contrib\
-    #       # deb-src http://research.cs.wisc.edu/htcondor/debian/8.8/buster buster contrib\
-    #       deb http://research.cs.wisc.edu/htcondor/debian/8.8/
-    #       {{ ansible_distribution_release }} {{ ansible_distribution_release }}
-    #       contrib\
-    #       deb-src http://research.cs.wisc.edu/htcondor/debian/8.8/
-    #       {{ ansible_distribution_release }} {{ ansible_distribution_release }}
-    #       contrib
-    #       # deb https://download.docker.com/linux/debian
-    #       # {{ ansible_distribution_release }} stable
-    #     filename: htcondor
-    #     state: present
 
     - name: Install Docker CLI
       ansible.builtin.apt:

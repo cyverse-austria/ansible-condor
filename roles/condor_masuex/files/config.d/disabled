@@ -1,2 +1,0 @@
-NodeDisabled = true
-STARTD_ATTRS = $(STARTD_ATTRS) NodeDisabled

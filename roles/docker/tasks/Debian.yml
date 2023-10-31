@@ -1,20 +1,8 @@
 ---
-# - name: Update apt-cache
-#   ansible.builtin.apt:
-#     # name: "*"
-#     # state: latest
-#     update_cache: true
-
 - name: Install repos and packages
   tags:
     - install
   block:
-    # - name: Add gpg
-    #   ansible.builtin.apt:
-    #     name:
-    #       - gnupg2
-    #     state: present
-
     - name: Add repo key
       ansible.builtin.apt_key:
         url: "https://download.docker.com/linux/debian/gpg"
@@ -38,6 +26,3 @@
           - containerd.io
         state: present
         update_cache: true
-
-          # deb [arch={{ ansible_architecture }}
-          # signed-by=/etc/apt/keyrings/docker.gpg]

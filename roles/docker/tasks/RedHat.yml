@@ -2,8 +2,6 @@
 - name: Install repos and packages
   tags:
     - install
-  # notify:
-  #   - Restart and enable docker
   block:
     - name: Get docker
       ansible.builtin.pip:

@@ -18,6 +18,3 @@
     name: docker-compose-plugin
     state: present
     update_cache: true
-
-      # deb [arch={{ ansible_architecture }}
-      # signed-by=/etc/apt/keyrings/docker.gpg]

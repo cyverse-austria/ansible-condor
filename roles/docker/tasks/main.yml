@@ -25,12 +25,7 @@
         name: condor
         groups: docker
         append: true
-#
-    # - name: Get pip
-    #   ansible.builtin.package:
-    #     name: "python3-pip"
         state: "present"
-    #
-    # Install repos and packages
+
     - name: Install repos and packages
       ansible.builtin.include_tasks: "{{ ansible_os_family }}.yml"
