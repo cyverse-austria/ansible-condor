@@ -1,0 +1,4 @@
+---
+common__redhat_key: "https://research.cs.wisc.edu/htcondor/repo/keys/HTCondor-23.0-Key"
+common__redhat_rpm: "https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el9.noarch.rpm"
+common__debian_key: "https://research.cs.wisc.edu/htcondor/repo/keys/HTCondor-10.x-Key"

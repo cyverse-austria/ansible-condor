@@ -12,7 +12,7 @@
 
     - name: Add repo key
       ansible.builtin.apt_key:
-        url: "https://research.cs.wisc.edu/htcondor/repo/keys/HTCondor-10.x-Key"
+        url: "{{ common__debian_key }}"
         state: present
         keyring: /etc/apt/trusted.gpg.d/htcondor.gpg
 
