@@ -1,0 +1,32 @@
+---
+
+- name: Install repos and packages
+  tags:
+    - install
+  block:
+    - name: Add gpg
+      ansible.builtin.apt:
+        name:
+          - gnupg2
+        state: present
+
+    - name: Add repo key
+      ansible.builtin.apt_key:
+        url: "{{ common__debian_key }}"
+        state: present
+        keyring: /etc/apt/trusted.gpg.d/htcondor.gpg
+
+    - name: Add repo
+      ansible.builtin.apt_repository:
+        repo: >
+          deb http://research.cs.wisc.edu/htcondor/repo/debian/10.x
+          {{ ansible_distribution_release }} main
+        filename: htcondor
+        state: present
+
+    - name: Install Docker CLI
+      ansible.builtin.apt:
+        name:
+          - condor
+        state: present
+        update_cache: true

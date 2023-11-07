@@ -1,18 +1,18 @@
 ## Which machine is your central manager?
-CONDOR_HOST = {{ condor_masuex_master_fqdn }}
-use role:get_htcondor_{{ condor_role }}
+CONDOR_HOST = {{ condor_masuex__master_fqdn }}
+use role:get_htcondor_{{ condor_masuex__condor_role }}
 
 TRUST_UID_DOMAIN = TRUE
 
 #################################
 ## Added for iPlant Collaborative
 #################################
-CONDOR_ADMIN        = {{ condor_admin }}
-UID_DOMAIN          = {{ condor_uid_domain }}
-FILESYSTEM_DOMAIN   = {{ condor_filesystem_domain }}
-COLLECTOR_NAME      = {{ condor_collector_name }}
-ALLOW_READ          = {{ condor_allow_read | join(',') }}
-ALLOW_WRITE         = {{ condor_allow_write | join(',') }}
+CONDOR_ADMIN        = {{ condor_masuex__condor_admin }}
+UID_DOMAIN          = {{ condor_masuex__condor_uid_domain }}
+FILESYSTEM_DOMAIN   = {{ condor_masuex__condor_filesystem_domain }}
+COLLECTOR_NAME      = {{ condor_masuex__condor_collector_name }}
+ALLOW_READ          = {{ condor_masuex__condor_allow_read | join(',') }}
+ALLOW_WRITE         = {{ condor_masuex__condor_allow_write | join(',') }}
 HIGHPORT            = 65535
 LOWPORT             = 61440
 ASSIGN_CPU_AFFINITY = True

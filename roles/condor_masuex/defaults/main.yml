@@ -1,10 +1,10 @@
 ---
-condor_admin: "grid@cyverse.org"
-condor_uid_domain: "cyverse.org"
-condor_filesystem_domain: "cyverse.org"
-condor_collector_name: "cyverse-collector"
-condor_allow_read: []
-condor_allow_write: []
-condor_exec_dir: "/var/lib/condor/execute/jobs"
-condor_password: ""
-condor_role: "central_manager"
+condor_masuex__condor_admin: "grid@cyverse.org"
+condor_masuex__condor_uid_domain: "cyverse.org"
+condor_masuex__condor_filesystem_domain: "cyverse.org"
+condor_masuex__condor_collector_name: "cyverse-collector"
+condor_masuex__condor_allow_read: []
+condor_masuex__condor_allow_write: []
+condor_masuex__condor_exec_dir: "/var/lib/condor/execute/jobs"
+condor_masuex__condor_password: ""
+condor_masuex__condor_role: "central_manager"

@@ -4,6 +4,8 @@
   tags:
     - config
     - config_user
+  notify:
+    - Restart and enable docker
   block:
     - name: Add the docker group
       ansible.builtin.group:
@@ -23,36 +25,7 @@
         name: condor
         groups: docker
         append: true
+        state: "present"
 
-# Install repos and packages
-- name: Install repos and packages
-  tags:
-    - install
-  notify:
-    - Restart and enable docker
-  block:
-    - name: Add repo file
-      ansible.builtin.get_url:
-        dest: "/etc/yum.repos.d/docker-ce.repo"
-        url: "https://download.docker.com/linux/centos/docker-ce.repo"
-        mode: "0644"
-
-    - name: Install Docker CLI
-      ansible.builtin.package:
-        name: docker-ce-cli
-        state: present
-
-    - name: Install Docker
-      ansible.builtin.package:
-        name: docker-ce
-        state: present
-
-    - name: Install containerd.io
-      ansible.builtin.package:
-        name: containerd.io
-        state: present
-
-    - name: Install docker-compose plugin
-      ansible.builtin.package:
-        name: docker-compose-plugin
-        state: present
+    - name: Install repos and packages
+      ansible.builtin.include_tasks: "{{ ansible_os_family }}.yml"

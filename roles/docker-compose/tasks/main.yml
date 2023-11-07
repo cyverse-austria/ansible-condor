@@ -1,18 +1,6 @@
 ---
-- name: Add repo file
-  ansible.builtin.get_url:
-    dest: "/etc/yum.repos.d/docker-ce.repo"
-    url: "https://download.docker.com/linux/centos/docker-ce.repo"
-    mode: "0644"
-  tags:
-    - install
-
-- name: Install the docker compose plugin
-  ansible.builtin.package:
-    name: docker-compose-plugin
-    state: present
-  tags:
-    - install
+- name: Install repos and packages
+  ansible.builtin.include_tasks: "{{ ansible_os_family }}.yml"
 
 - name: Download Docker Compose
   ansible.builtin.get_url:
