@@ -21,7 +21,7 @@
   roles:
     - role: condor_masuex
       vars:
-        condor_role: "central_manager"
+        condor_masuex__condor_role: "central_manager"
 
 - name: Condor submit
   hosts: condor_submit
@@ -29,7 +29,7 @@
   roles:
     - role: condor_masuex
       vars:
-        condor_role: "submit"
+        condor_masuex__condor_role: "submit"
     - role: de-condor-launcher
     - role: de-road-runner
 
@@ -40,7 +40,7 @@
   roles:
     - role: condor_masuex
       vars:
-        condor_role: "execute"
+        condor_masuex__condor_role: "execute"
 
 - name: Docker stuff
   hosts: condor:!condor_manager
