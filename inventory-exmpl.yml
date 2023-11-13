@@ -1,0 +1,18 @@
+all:
+  children:
+    condor:
+      children:
+        condor_manager:
+          hosts:
+            condor-manager.local.net:
+              ansible_host: 10.0.0.1
+        condor_submit:
+          hosts:
+            condor-submit.local.net:
+              ansible_host: 10.0.0.2
+        condor_worker:
+          hosts:
+            condor-worker-01.local.net:
+              ansible_host: 10.0.0.3
+            condor-worker-02.local.net:
+              ansible_host: 10.0.0.4
