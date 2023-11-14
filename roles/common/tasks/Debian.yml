@@ -19,7 +19,7 @@
     - name: Add repo
       ansible.builtin.apt_repository:
         repo: >
-          deb http://research.cs.wisc.edu/htcondor/repo/debian/10.x
+          deb http://research.cs.wisc.edu/htcondor/repo/debian/{{ common__condor_version }}.x
           {{ ansible_distribution_release }} main
         filename: htcondor
         state: present

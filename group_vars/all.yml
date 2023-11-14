@@ -12,17 +12,27 @@ docker:
 #     user: "someuser"
 #     password: "notreal"
 #     test_image: "registry.example.org/image:latest"
+
+condor_domain: "domain.com"
+common__condor_version: 10
+allow_hosts: ""
+
+tmp_read_write: >-
+  ["*.{{ condor_domain }},127.0.0.1
+  {%- for host in groups['all'] -%}
+  ,{{ hostvars[host]['ansible_default_ipv4']['address'] }}
+  {%- endfor %}
+  {%- if allow_hosts|length -%}
+  ,{{ allow_hosts }}
+  {%- endif %}"]
 condor:
-  admin: "grid@tugraz.at"
-  uid_domain: "cyverse.at"
-  filesystem_domain: "cyverse.at"
+  admin: "grid@{{ condor_domain }}"
+  uid_domain: "{{ condor_domain }}"
+  filesystem_domain: "{{ condor_domain }}"
   collector_name: "example-collector"
-  allow_read: ["*.cyverse.at", "127.0.0.1,134.209.82.111/24,134.209.82.110/24,174.138.2.245/24,134.209.82.109/24"]
-  allow_write: ["*.cyverse.at", "127.0.0.1,134.209.82.111/24,134.209.82.110/24,174.138.2.245/24,134.209.82.109/24"]
-  # allow_read: ["*.example.org", "1.2.3.0/24"]
-  # allow_write: ["*.example.org", "1.2.3.0/24"]
+  allow_write: "{{ tmp_read_write }}"
+  allow_read: "{{ tmp_read_write }}"
   exec_dir: "/var/lib/condor/execute/jobs"
-  # password: "notreal"
   password: "notreal:seemstobemuchtoshort.sothisoneisalongerversionofapassword"
 
 use_overlay: ''

@@ -16,6 +16,13 @@ Discovery Environment (CD). The jobs from CD are mostly prepared and executed
 using containers. Therefore all HTCondor cluster members except the master
 needs docker and docker-compose installed (roles: `docker`, `docker-compose`).
 
+## vars needed
+Change the needed var in `group_vars/all.yml`, especially:
+* `condor_domain`: The domain-name the HTCondor-cluster is running in.
+* `common__condor_version`: This role-var should be set *globally*. It
+  determines the condor-version that will be installed (for all supported
+  linux distributions).
+
 ### de-condor-launcher
 
 This program accepts job requests from DE and submits it to the HTCondor
