@@ -19,7 +19,8 @@ needs docker and docker-compose installed (roles: `docker`, `docker-compose`).
 ## vars files
 * `group_vars/all.yml`
 * `group_vars/condor.yml`
-Change these variable values accordingly.
+ 
+Change these files' variable values accordingly.
 
 **e.g.** `condor_domain`: The domain-name the HTCondor-cluster is running in.
  `common__condor_version`: This role-var should be set *globally*. It
