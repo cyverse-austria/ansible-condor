@@ -3,29 +3,26 @@
 The playbook (`./condor.yml`) in this directory installs a HTCondor cluster
 for the CyVerse Discovery Environment.
 
-## supported linux distributions
-
+**supported linux distributions**
 * Rocky 9
 * Debian 12 (bookworm)
 
-## some roles
+**Run the playbook**
+
+```bash
+ansible-playbook -i inventory-exmpl.yml --user=root --become condor.yml
+```
+
+
+
+
+## Roles
 
 * The roles `common`, `condor_masuex` are installing a HTCondor cluster.  
 * All roles with prefix `de-` are needed to add the connection to the Cyverse
 Discovery Environment (CD). The jobs from CD are mostly prepared and executed
 using containers. Therefore all HTCondor cluster members except the master
 needs docker and docker-compose installed (roles: `docker`, `docker-compose`).
-
-## vars files
-* `group_vars/all.yml`
-* `group_vars/condor.yml`
- 
-Change these files' variable values accordingly.
-
-**e.g.** `condor_domain`: The domain-name the HTCondor-cluster is running in.
- `common__condor_version`: This role-var should be set *globally*. It
-  determines the condor-version that will be installed (for all supported
-  linux distributions).
 
 ### de-condor-launcher
 
@@ -57,6 +54,18 @@ Removes unused, unneeded and/or finished docker-networks.
 ### de-docker-janitor
 
 Removes unused, unneeded and/or finished docker-containers.
+
+## Group vars
+* `group_vars/all.yml`
+* `group_vars/condor.yml`
+ 
+Change these files' variable values accordingly.
+
+**e.g.** `condor_domain`: The domain-name the HTCondor-cluster is running in.
+ `common__condor_version`: This role-var should be set *globally*. It
+  determines the condor-version that will be installed (for all supported
+  linux distributions).
+
 
 ## important config (/etc/jobservices.yml)
 
