@@ -6,20 +6,23 @@ for the CyVerse Discovery Environment.
 ## supported linux distributions
 
 * Rocky 9
-* Debian 12
+* Debian 12 (bookworm)
 
 ## some roles
 
-The roles `common`, `condor_masuex` are installing a HTCondor cluster.  
-All roles with prefix `de-` are needed to add the connection to the Cyverse
+* The roles `common`, `condor_masuex` are installing a HTCondor cluster.  
+* All roles with prefix `de-` are needed to add the connection to the Cyverse
 Discovery Environment (CD). The jobs from CD are mostly prepared and executed
 using containers. Therefore all HTCondor cluster members except the master
 needs docker and docker-compose installed (roles: `docker`, `docker-compose`).
 
-## vars needed
-Change the needed var in `group_vars/all.yml`, especially:
-* `condor_domain`: The domain-name the HTCondor-cluster is running in.
-* `common__condor_version`: This role-var should be set *globally*. It
+## vars files
+* `group_vars/all.yml`
+* `group_vars/condor.yml`
+Change these variable values accordingly.
+
+**e.g.** `condor_domain`: The domain-name the HTCondor-cluster is running in.
+ `common__condor_version`: This role-var should be set *globally*. It
   determines the condor-version that will be installed (for all supported
   linux distributions).
 
@@ -54,10 +57,16 @@ Removes unused, unneeded and/or finished docker-networks.
 
 Removes unused, unneeded and/or finished docker-containers.
 
-## important config
+## important config (/etc/jobservices.yml)
 
-This role needs a `/etc/jobservices.yml`. In this file all communication
+Most roles in this playbook require a config file of `jobservices.yml`,
+
+which can be found in the original repo of `k8s-resources/resources/configs/{{environment_name}}/jobservices.yml`.
+In this file, all communication
 between CD and HTCondor is configured. Incl. iRODS, amqp, porklock, ...  
+
+*On this playbook we have created a file `group_vars/condor.yml` to override `/etc/jobservices.yml`*
+
 A template can be found in `./roles/de-condor-launcher/templates`.  
 The file also contains the `keycloak` credential => **be careful**.
 
