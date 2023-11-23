@@ -4,10 +4,11 @@
   tags:
     - install
   block:
-    - name: Add gpg
+    - name: Add needed progs
       ansible.builtin.apt:
         name:
           - gnupg2
+          - sudo
         state: present
 
     - name: Add repo key
