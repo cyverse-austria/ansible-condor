@@ -13,9 +13,6 @@ for the CyVerse Discovery Environment.
 ansible-playbook -i inventory-exmpl.yml --user=root --become condor.yml
 ```
 
-
-
-
 ## Roles
 
 * The roles `common`, `condor_masuex` are installing a HTCondor cluster.  
@@ -91,3 +88,9 @@ Directory`. If the user points this `woring_dir` to `/tmp` too, the job will
 not be able to run.  
 (The container tries to mount the same volume (`/tmp`) to two different directories
 , but the error-message is not really indicating this as the reason.)
+
+## K8S 
+Restart related deployment in kubernetes
+```bash
+kubectl rollout restart deployment jex-adapter -n NAMESPACE
+```
