@@ -10,7 +10,7 @@
 
 - name: download road-runner release
   get_url:
-    url: "https://github.com/cyverse-de/road-runner/releases/download/v0.0.1/road-runner"
+    url: "https://github.com/cyverse-de/road-runner/releases/download/v3.0.0/road-runner"
     dest: "/usr/local/bin/road-runner"
     # owner: root
     # group: root

@@ -11,7 +11,7 @@
 
 - name: Pull porklock image
   ansible.builtin.docker_image:
-    name: discoenv/porklock
+    name: harbor.cyverse.org/de/porklock
     tag: "{{ docker.tag }}"
     source: pull
 

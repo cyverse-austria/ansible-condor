@@ -12,7 +12,7 @@
 
 - name: download condor-launcher release
   get_url:
-    url: "https://github.com/cyverse-de/condor-launcher/releases/download/v2.21.0/condor-launcher"
+    url: "https://github.com/cyverse-de/condor-launcher/releases/download/v3.0.0/condor-launcher"
     dest: "/usr/local/bin/condor-launcher"
     owner: root
     group: root
