@@ -4,6 +4,28 @@ use role:get_htcondor_{{ condor_masuex__condor_role }}
 
 TRUST_UID_DOMAIN = TRUE
 
+IS_OWNER = FALSE
+
+##  When to suspend a job?
+SUSPEND = FALSE
+
+##  When to nicely stop a job?
+##  (as opposed to killing it instantaneously)
+PREEMPT = FALSE
+
+##  When to instantaneously kill a preempting job
+##  (e.g. if a job is in the pre-empting stage for too long)
+KILL = FALSE
+
+##  This macro determines what daemons the condor_master will start and keep its watchful eyes on.
+##  The list is a comma or space separated list of subsystem names
+DAEMON_LIST = MASTER, STARTD
+
+##  Sets how often the condor_negotiator starts a negotiation cycle.
+##  It is defined in seconds and defaults to 60 (1 minute).
+NEGOTIATOR_INTERVAL = 20
+
+
 #################################
 ## Added for iPlant Collaborative
 #################################
@@ -18,6 +40,8 @@ LOWPORT             = 61440
 ASSIGN_CPU_AFFINITY = True
 
 HAS_CYVERSE_ROAD_RUNNER = True
+
+IplantSpeedIndex = 10
 # STARTD_ATTRS = $(STARTD_ATTRS) HAS_HOST_MOUNTS HAS_CYVERSE_ROAD_RUNNER
 STARTD_ATTRS = $(STARTD_ATTRS) HAS_CYVERSE_ROAD_RUNNER
 
@@ -28,3 +52,4 @@ SLOT_TYPE_1 = cpus=100%
 SLOT_TYPE_1_PARTITIONABLE = true
 
 SLOT_WEIGHT = 1
+MaxVacateTime = 60 * $(MINUTE)
