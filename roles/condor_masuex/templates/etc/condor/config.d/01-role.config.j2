@@ -4,18 +4,18 @@ use role:get_htcondor_{{ condor_masuex__condor_role }}
 
 TRUST_UID_DOMAIN = TRUE
 
-IS_OWNER = FALSE
+# IS_OWNER = FALSE
 
 ##  When to suspend a job?
-SUSPEND = FALSE
+# SUSPEND = FALSE
 
 ##  When to nicely stop a job?
 ##  (as opposed to killing it instantaneously)
-PREEMPT = FALSE
+# PREEMPT = FALSE
 
 ##  When to instantaneously kill a preempting job
 ##  (e.g. if a job is in the pre-empting stage for too long)
-KILL = FALSE
+# KILL = FALSE
 
 ##  This macro determines what daemons the condor_master will start and keep its watchful eyes on.
 ##  The list is a comma or space separated list of subsystem names
@@ -41,7 +41,7 @@ ASSIGN_CPU_AFFINITY = True
 
 HAS_CYVERSE_ROAD_RUNNER = True
 
-IplantSpeedIndex = 10
+# IplantSpeedIndex = 10
 # STARTD_ATTRS = $(STARTD_ATTRS) HAS_HOST_MOUNTS HAS_CYVERSE_ROAD_RUNNER
 STARTD_ATTRS = $(STARTD_ATTRS) HAS_CYVERSE_ROAD_RUNNER
 
