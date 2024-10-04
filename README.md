@@ -94,3 +94,10 @@ Restart related deployment in kubernetes
 ```bash
 kubectl rollout restart deployment jex-adapter -n NAMESPACE
 ```
+
+## Condor Commands
+
+**Check running slot Cpus and Memory**
+```bash
+condor_status -long slot2@HOST | grep -E "Cpus|Memory|SlotType"
+```
