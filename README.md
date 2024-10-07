@@ -78,7 +78,7 @@ A template can be found in `./roles/de-condor-launcher/templates`.
 The file also contains the `keycloak` credential => **be careful**.
 
 ## important config of condor
-*(roles\condor_masuex\templates\etc\condor\config.d\01-role.config.j2)*
+These global configs for Condor can be found at `(roles\condor_masuex\templates\etc\condor\config.d\01-role.config.j2)`
 
 Enabling the [Dynamic Provisioning: Partitionable and Dynamic Slots](https://htcondor.readthedocs.io/en/latest/admin-manual/ep-policy-configuration.html#dynamic-provisioning-partitionable-and-dynamic-slots)
 
