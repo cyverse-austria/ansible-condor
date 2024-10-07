@@ -77,6 +77,18 @@ between CD and HTCondor is configured. Incl. iRODS, amqp, porklock, ...
 A template can be found in `./roles/de-condor-launcher/templates`.  
 The file also contains the `keycloak` credential => **be careful**.
 
+## important config of condor
+These global configs for Condor can be found at `(roles\condor_masuex\templates\etc\condor\config.d\01-role.config.j2)`
+
+Enabling the [Dynamic Provisioning: Partitionable and Dynamic Slots](https://htcondor.readthedocs.io/en/latest/admin-manual/ep-policy-configuration.html#dynamic-provisioning-partitionable-and-dynamic-slots)
+
+```bash
+NUM_SLOTS = 1
+NUM_SLOTS_TYPE_1 = 1
+SLOT_TYPE_1 = cpus=100%
+SLOT_TYPE_1_PARTITIONABLE = true
+```
+
 ## kind of a bug
 
 `road-runner` creates a container that needs two directories to work.
@@ -93,4 +105,11 @@ not be able to run.
 Restart related deployment in kubernetes
 ```bash
 kubectl rollout restart deployment jex-adapter -n NAMESPACE
+```
+
+## Condor Commands
+
+**Check running slot Cpus and Memory**
+```bash
+condor_status -long slot2@HOST | grep -E "Cpus|Memory|SlotType"
 ```
